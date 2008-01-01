@@ -114,3 +114,4 @@ done
 %{_includedir}/*
 %{_libdir}/*.so
 %{_libdir}/*.a
+
