@@ -3,7 +3,7 @@
 %define name		cholmod
 %define NAME		CHOLMOD
 %define version		1.6.0
-%define release		%mkrel 1
+%define release		%mkrel 2
 %define major		%{version}
 %define libname		%mklibname %{name} %{major}
 %define develname	%mklibname %{name} -d
@@ -44,6 +44,7 @@ Requires:	suitesparse-common-devel >= 3.0.0
 Requires:	%{libname} = %{epoch}:%{version}-%{release}
 Provides:	%{name}-devel = %{epoch}:%{version}-%{release}
 Obsoletes: 	%mklibname %name 1 -d
+Obsoletes: 	%mklibname %name 1 -d -s
 
 %description -n %{develname}
 CHOLMOD is a set of routines for factorizing sparse symmetric positive
