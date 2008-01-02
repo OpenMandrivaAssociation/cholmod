@@ -3,7 +3,7 @@
 %define name		cholmod
 %define NAME		CHOLMOD
 %define version		1.6.0
-%define release		%mkrel 5
+%define release		%mkrel 6
 %define major		%{version}
 %define libname		%mklibname %{name} %{major}
 %define develname	%mklibname %{name} -d
@@ -120,11 +120,11 @@ done
 
 %files -n %{libname}
 %defattr(-,root,root)
-%{_docdir}/%{name}
 %{_libdir}/*.so.*
 
 %files -n %{develname}
 %defattr(-,root,root)
+%{_docdir}/%{name}
 %{_includedir}/*
 %{_libdir}/*.so
 %{_libdir}/*.a
