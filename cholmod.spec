@@ -3,7 +3,7 @@
 %define name		cholmod
 %define NAME		CHOLMOD
 %define version		1.6.0
-%define release		%mkrel 4
+%define release		%mkrel 5
 %define major		%{version}
 %define libname		%mklibname %{name} %{major}
 %define develname	%mklibname %{name} -d
@@ -25,6 +25,14 @@ BuildRequires:	colamd-devel >= 2.0.0, ccolamd-devel >= 2.0.0
 BuildRoot:	%{_tmppath}/%{name}-%{version}
 
 %description
+CHOLMOD is a set of routines for factorizing sparse symmetric positive
+definite matrices of the form A or AA', updating/downdating a sparse
+Cholesky factorization, solving linear systems, updating/downdating
+the solution to the triangular system Lx=b, and many other sparse
+matrix functions for both symmetric and unsymmetric matrices.  Its
+supernodal Cholesky factorization relies on LAPACK and the Level-3
+BLAS, and obtains a substantial fraction of the peak performance of
+the BLAS.  Both real and complex matrices are supported.
 
 %package -n %{libname}
 Summary:	Library of routines for factorizing sparse symmetric positive definite matricies
@@ -32,6 +40,14 @@ Group:		System/Libraries
 Provides:	%{libname} = %{epoch}:%{version}-%{release}
 
 %description -n %{libname}
+CHOLMOD is a set of routines for factorizing sparse symmetric positive
+definite matrices of the form A or AA', updating/downdating a sparse
+Cholesky factorization, solving linear systems, updating/downdating
+the solution to the triangular system Lx=b, and many other sparse
+matrix functions for both symmetric and unsymmetric matrices.  Its
+supernodal Cholesky factorization relies on LAPACK and the Level-3
+BLAS, and obtains a substantial fraction of the peak performance of
+the BLAS.  Both real and complex matrices are supported.
 
 This package contains the library needed to run programs dynamically
 linked against %{NAME}.
@@ -47,14 +63,13 @@ Obsoletes: 	%mklibname %name 1 -d -s
 
 %description -n %{develname}
 CHOLMOD is a set of routines for factorizing sparse symmetric positive
-definite matrices of the form A or AA', updating/downdating a
-sparse Cholesky factorization, solving linear systems,
-updating/downdating the solution to the triangular system Lx=b,
-and many other sparse matrix functions for both symmetric and
-unsymmetric matrices.  Its supernodal Cholesky factorization
-relies on LAPACK and the Level-3 BLAS, and obtains a substantial
-fraction of the peak performance of the BLAS.  Both real and
-complex matrices are supported.
+definite matrices of the form A or AA', updating/downdating a sparse
+Cholesky factorization, solving linear systems, updating/downdating
+the solution to the triangular system Lx=b, and many other sparse
+matrix functions for both symmetric and unsymmetric matrices.  Its
+supernodal Cholesky factorization relies on LAPACK and the Level-3
+BLAS, and obtains a substantial fraction of the peak performance of
+the BLAS.  Both real and complex matrices are supported.
 
 This package contains the files needed to develop applications which
 use %{name}.
