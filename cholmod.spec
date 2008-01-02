@@ -3,7 +3,7 @@
 %define name		cholmod
 %define NAME		CHOLMOD
 %define version		1.6.0
-%define release		%mkrel 3
+%define release		%mkrel 4
 %define major		%{version}
 %define libname		%mklibname %{name} %{major}
 %define develname	%mklibname %{name} -d
@@ -30,7 +30,6 @@ BuildRoot:	%{_tmppath}/%{name}-%{version}
 Summary:	Library of routines for factorizing sparse symmetric positive definite matricies
 Group:		System/Libraries
 Provides:	%{libname} = %{epoch}:%{version}-%{release}
-Obsoletes:	%mklibname %name 1
 
 %description -n %{libname}
 
