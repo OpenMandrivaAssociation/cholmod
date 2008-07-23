@@ -3,7 +3,7 @@
 %define name		cholmod
 %define NAME		CHOLMOD
 %define version		1.6.0
-%define release		%mkrel 6
+%define release		%mkrel 8
 %define major		%{version}
 %define libname		%mklibname %{name} %{major}
 %define develname	%mklibname %{name} -d
