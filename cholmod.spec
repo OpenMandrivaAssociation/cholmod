@@ -3,7 +3,7 @@
 %define name		cholmod
 %define NAME		CHOLMOD
 %define version		1.7.0
-%define release		%mkrel 1
+%define release		%mkrel 2
 %define major		%{version}
 %define libname		%mklibname %{name} %{major}
 %define develname	%mklibname %{name} -d
@@ -13,12 +13,13 @@
 Name:		%{name}
 Version:	%{version}
 Release:	%{release}
+Epoch:		%{epoch}
 Summary:	Routines for factorizing sparse symmetric positive definite matricies
 Group:		System/Libraries
 License:	LGPL
 URL:		http://www.cise.ufl.edu/research/sparse/cholmod/
 Source0:	http://www.cise.ufl.edu/research/sparse/cholmod/%{NAME}-%{version}.tar.gz
-Source1:	http://www.cise.ufl.edu/research/sparse/ufconfig/UFconfig-3.1.0.tar.gz
+Source1:	http://www.cise.ufl.edu/research/sparse/ufconfig/UFconfig-3.2.0.tar.gz
 BuildRequires:	blas-devel, lapack-devel
 BuildRequires:	amd-devel >= 2.0.0, camd-devel >= 2.0.0
 BuildRequires:	colamd-devel >= 2.0.0, ccolamd-devel >= 2.0.0
