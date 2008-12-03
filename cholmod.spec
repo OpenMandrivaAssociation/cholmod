@@ -3,7 +3,7 @@
 %define name		cholmod
 %define NAME		CHOLMOD
 %define version		1.7.0
-%define release		%mkrel 2
+%define release		%mkrel 3
 %define major		%{version}
 %define libname		%mklibname %{name} %{major}
 %define develname	%mklibname %{name} -d
@@ -19,11 +19,11 @@ Group:		System/Libraries
 License:	LGPL
 URL:		http://www.cise.ufl.edu/research/sparse/cholmod/
 Source0:	http://www.cise.ufl.edu/research/sparse/cholmod/%{NAME}-%{version}.tar.gz
-Source1:	http://www.cise.ufl.edu/research/sparse/ufconfig/UFconfig-3.2.0.tar.gz
+BuildRoot:	%{_tmppath}/%{name}-%{version}
 BuildRequires:	blas-devel, lapack-devel
 BuildRequires:	amd-devel >= 2.0.0, camd-devel >= 2.0.0
 BuildRequires:	colamd-devel >= 2.0.0, ccolamd-devel >= 2.0.0
-BuildRoot:	%{_tmppath}/%{name}-%{version}
+BuildRequires:	suitesparse-common-devel >= 3.2.0-2
 
 %description
 CHOLMOD is a set of routines for factorizing sparse symmetric positive
@@ -77,8 +77,9 @@ use %{name}.
 
 %prep
 %setup -q -c 
-%setup -q -c -a 0 -a 1
-%setup -q -D -T -n %{name}-%{version}/%{NAME}
+%setup -q -D -n %{name}-%{version}/%{NAME}
+mkdir ../UFconfig
+ln -sf %{_includedir}/suitesparse/UFconfig.* ../UFconfig
 
 %build
 %if "%{?enable_metis}" == "1"
@@ -87,7 +88,7 @@ CHOLMOD_FLAGS="%{optflags} -I%{_includedir}/metis -fPIC"
 CHOLMOD_FLAGS="%{optflags} -DNPARTITION -fPIC"
 %endif
 pushd Lib
-    %make -f Makefile CC=%__cc CFLAGS="$RPM_OPT_FLAGS $CHOLMOD_FLAGS -fPIC -I/usr/include/suitesparse" INC=
+    %make -f Makefile CC=%__cc CFLAGS="$CHOLMOD_FLAGS -fPIC -I%{_includedir}/suitesparse" INC=
     %__cc -shared -Wl,-soname,lib%{name}.so.%{major} -o lib%{name}.so.%{version} -lamd -lcamd -lcolamd -lccolamd -lm *.o
 popd
 
