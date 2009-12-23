@@ -2,8 +2,8 @@
 
 %define name		cholmod
 %define NAME		CHOLMOD
-%define version		1.7.0
-%define release		%mkrel 4
+%define version		1.7.1
+%define release		%mkrel 1
 %define major		%{version}
 %define libname		%mklibname %{name} %{major}
 %define develname	%mklibname %{name} -d
@@ -56,7 +56,7 @@ linked against %{NAME}.
 %package -n %{develname}
 Summary:	C routines for factorizing sparse symmetric positive definite matricies
 Group:		Development/C
-Requires:	suitesparse-common-devel >= 3.0.0
+Requires:	suitesparse-common-devel >= 3.2.0-2
 Requires:	%{libname} = %{epoch}:%{version}-%{release}
 Provides:	%{name}-devel = %{epoch}:%{version}-%{release}
 Obsoletes: 	%mklibname %name 1 -d
