@@ -6,8 +6,8 @@
 %define enable_metis 	0
 
 Name:		cholmod
-Version:	2.0.1
-Release:	1
+Version:	2.0.1/
+Release:	2
 Epoch:		1
 Summary:	Routines for factorizing sparse symmetric positive definite matricies
 Group:		System/Libraries
