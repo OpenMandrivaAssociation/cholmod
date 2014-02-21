@@ -1,0 +1,22 @@
+--- cholmod-2.1.2/CHOLMOD/Core/cholmod_factor.c~	2013-03-27 19:59:59.000000000 +0100
++++ cholmod-2.1.2/CHOLMOD/Core/cholmod_factor.c	2014-02-21 18:14:00.179461398 +0100
+@@ -109,7 +109,9 @@ cholmod_factor *CHOLMOD(allocate_factor)
+     /* allocate the purely symbolic part of L */
+     L->ordering = CHOLMOD_NATURAL ;
+     L->Perm = CHOLMOD(malloc) (n, sizeof (Int), Common) ;
++#ifdef GPU_BLAS
+     L->IPerm = NULL ;       /* only created by cholmod_solve2 when needed */
++#endif
+     L->ColCount = CHOLMOD(malloc) (n, sizeof (Int), Common) ;
+ 
+     /* simplicial part of L is empty */
+@@ -200,7 +202,9 @@ int CHOLMOD(free_factor)
+ 
+     /* symbolic part of L */
+     CHOLMOD(free) (n,   sizeof (Int), L->Perm,     Common) ;
++#ifdef GPU_BLAS
+     CHOLMOD(free) (n,   sizeof (Int), L->IPerm,    Common) ;
++#endif
+     CHOLMOD(free) (n,   sizeof (Int), L->ColCount, Common) ;
+ 
+     /* simplicial form of L */
