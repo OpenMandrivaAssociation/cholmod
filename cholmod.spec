@@ -84,12 +84,12 @@ ln -sf %{_includedir}/suitesparse/SuiteSparse_config.* ../SuiteSparse_config
 %build
 cd %{NAME}
 %if %{with metis}
-CHOLMOD_FLAGS="%{optflags} -I%{_includedir}/metis -DNCHOLESKY -fPIC"
+CONF="-I%{_includedir}/metis -DNCHOLESKY"
 %else
-CHOLMOD_FLAGS="%{optflags} -DNPARTITION -DNCHOLESKY -fPIC "
+CONF="-DNPARTITION -DNCHOLESKY"
 %endif
 pushd Lib
-    %make CFLAGS="$CHOLMOD_FLAGS -I%{_includedir}/suitesparse" INC=
+    %make CONFIG="$CONF" CFLAGS="%{optflags} -I%{_includedir}/suitesparse" INC=
     gcc %{ldflags} -shared -Wl,-soname,lib%{name}.so.%{major} -o lib%{name}.so.%{version} *.o -lsuitesparseconfig -lamd -lcamd -lcolamd -lccolamd -lblas -llapack -lm
 popd
 
