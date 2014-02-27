@@ -11,7 +11,7 @@ Release:	2
 Epoch:		1
 Summary:	Routines for factorizing sparse symmetric positive definite matricies
 Group:		System/Libraries
-License:	LGPL
+License:	LGPLv2+
 URL:		http://www.cise.ufl.edu/research/sparse/cholmod/
 Source0:	http://www.cise.ufl.edu/research/sparse/cholmod/%{NAME}-%{version}.tar.gz
 Patch0:		cholmod-2.1.2-no-cuda.patch
