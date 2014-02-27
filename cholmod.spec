@@ -97,23 +97,23 @@ popd
 %install
 cd %{NAME}
 
-%__install -d -m 755 %{buildroot}%{_libdir} 
-%__install -d -m 755 %{buildroot}%{_includedir}/suitesparse 
+install -d -m 755 %{buildroot}%{_libdir} 
+install -d -m 755 %{buildroot}%{_includedir}/suitesparse 
 
 for f in Lib/*.so*; do
-    %__install -m 755 $f %{buildroot}%{_libdir}/`basename $f`
+    install -m 755 $f %{buildroot}%{_libdir}/`basename $f`
 done
 for f in Lib/*.a; do
-    %__install -m 644 $f %{buildroot}%{_libdir}/`basename $f`
+    install -m 644 $f %{buildroot}%{_libdir}/`basename $f`
 done
 for f in Include/*.h; do
-    %__install -m 644 $f %{buildroot}%{_includedir}/suitesparse/`basename $f`
+    install -m 644 $f %{buildroot}%{_includedir}/suitesparse/`basename $f`
 done
 
-%__ln_s lib%{name}.so.%{version} %{buildroot}%{_libdir}/lib%{name}.so
+ln -s lib%{name}.so.%{version} %{buildroot}%{_libdir}/lib%{name}.so
 
-%__install -d -m 755 %{buildroot}%{_docdir}/%{name}
-%__install -m 644 README.txt Core/*.txt Doc/*.pdf Doc/ChangeLog %{buildroot}%{_docdir}/%{name}
+install -d -m 755 %{buildroot}%{_docdir}/%{name}
+install -m 644 README.txt Core/*.txt Doc/*.pdf Doc/ChangeLog %{buildroot}%{_docdir}/%{name}
 
 %files -n %{libname}
 %{_libdir}/libcholmod.so.%{major}*
