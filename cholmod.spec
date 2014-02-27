@@ -96,17 +96,14 @@ popd
 %install
 cd %{NAME}
 
-install -d -m 755 %{buildroot}%{_libdir} 
-install -d -m 755 %{buildroot}%{_includedir}/suitesparse 
-
 for f in Lib/*.so*; do
-    install -m 755 $f %{buildroot}%{_libdir}/`basename $f`
+    install -m755 $f -D %{buildroot}%{_libdir}/`basename $f`
 done
 for f in Lib/*.a; do
-    install -m 644 $f %{buildroot}%{_libdir}/`basename $f`
+    install -m644 $f -D %{buildroot}%{_libdir}/`basename $f`
 done
 for f in Include/*.h; do
-    install -m 644 $f %{buildroot}%{_includedir}/suitesparse/`basename $f`
+    install -m644 $f -D %{buildroot}%{_includedir}/suitesparse/`basename $f`
 done
 
 ln -s lib%{name}.so.%{version} %{buildroot}%{_libdir}/lib%{name}.so
