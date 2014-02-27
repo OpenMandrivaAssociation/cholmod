@@ -3,12 +3,11 @@
 %define libname	%mklibname %{name} %{major}
 %define devname	%mklibname %{name} -d
 
-%global optflags %{optflags} -fforce-addr -frename-registers -funroll-loops -Ofast
 %bcond_without	metis
 
 Name:		cholmod
 Version:	2.1.2
-Release:	1
+Release:	2
 Epoch:		1
 Summary:	Routines for factorizing sparse symmetric positive definite matricies
 Group:		System/Libraries
