@@ -3,11 +3,11 @@
 %define libname	%mklibname %{name} %{major}
 %define devname	%mklibname %{name} -d
 
-%bcond_with	metis
+%bcond_without	metis
 
 Name:		cholmod
 Version:	2.1.2
-Release:	3
+Release:	4
 Epoch:		1
 Summary:	Routines for factorizing sparse symmetric positive definite matricies
 Group:		System/Libraries
