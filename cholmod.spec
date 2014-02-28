@@ -3,11 +3,11 @@
 %define libname	%mklibname %{name} %{major}
 %define devname	%mklibname %{name} -d
 
-%bcond_with	metis
+%bcond_without	metis
 
 Name:		cholmod
 Version:	2.1.2
-Release:	2
+Release:	3
 Epoch:		1
 Summary:	Routines for factorizing sparse symmetric positive definite matricies
 Group:		System/Libraries
@@ -15,6 +15,7 @@ License:	LGPLv2+
 URL:		http://www.cise.ufl.edu/research/sparse/cholmod/
 Source0:	http://www.cise.ufl.edu/research/sparse/cholmod/%{NAME}-%{version}.tar.gz
 Patch0:		cholmod-2.1.2-no-cuda.patch
+Patch1:		cholmod-2.1.2-metis5-support.patch
 BuildRequires:	blas-devel
 BuildRequires:	lapack-devel
 BuildRequires:	amd-devel >= 2.0.0
@@ -23,7 +24,7 @@ BuildRequires:	colamd-devel >= 2.0.0
 BuildRequires:	ccolamd-devel >= 2.0.0
 BuildRequires:	suitesparse-common-devel >= 4.0.0
 %if %{with metis}
-BuildRequires:	metis-devel
+BuildRequires:	metis-devel >= 5.1.0
 %endif
 
 %description
@@ -76,6 +77,8 @@ use %{name}.
 %prep
 %setup -q -c -n %{name}-%{version}
 %patch0 -p1 -b .nocuda~
+%patch1 -p1 -b .metis5~
+
 cd %{NAME}
 find . -perm 0600 | xargs chmod 0644
 mkdir ../SuiteSparse_config
@@ -89,8 +92,12 @@ CONF="-I%{_includedir}/metis -DNCHOLESKY"
 CONF="-DNPARTITION -DNCHOLESKY"
 %endif
 pushd Lib
-    %make CONFIG="$CONF" CFLAGS="%{optflags} -I%{_includedir}/suitesparse" INC=
-    gcc %{ldflags} -shared -Wl,-soname,lib%{name}.so.%{major} -o lib%{name}.so.%{version} *.o -lsuitesparseconfig -lamd -lcamd -lcolamd -lccolamd -lblas -llapack -lm
+    %make CC=gcc CONFIG="$CONF" CFLAGS="%{optflags} -I%{_includedir}/suitesparse" INC=
+    gcc %{ldflags} -shared -Wl,-soname,lib%{name}.so.%{major} -o lib%{name}.so.%{version} *.o -lsuitesparseconfig -lamd -lcamd -lcolamd -lccolamd -lblas -llapack -lm \
+%if %{with metis}
+    -lmetis
+%endif
+
 popd
 
 %install
