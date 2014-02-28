@@ -87,9 +87,9 @@ ln -sf %{_includedir}/suitesparse/SuiteSparse_config.* ../SuiteSparse_config
 %build
 cd %{NAME}
 %if %{with metis}
-CONF="-I%{_includedir}/metis -DNCHOLESKY"
+CONF=""
 %else
-CONF="-DNPARTITION -DNCHOLESKY"
+CONF="-DNPARTITION"
 %endif
 pushd Lib
     %make CC=gcc CONFIG="$CONF" CFLAGS="%{optflags} -I%{_includedir}/suitesparse" INC=
