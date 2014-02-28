@@ -3,7 +3,7 @@
 %define libname	%mklibname %{name} %{major}
 %define devname	%mklibname %{name} -d
 
-%bcond_without	metis
+%bcond_with	metis
 
 Name:		cholmod
 Version:	2.1.2
