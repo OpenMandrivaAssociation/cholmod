@@ -22,7 +22,7 @@ BuildRequires:	amd-devel >= 2.0.0
 BuildRequires:	camd-devel >= 2.0.0
 BuildRequires:	colamd-devel >= 2.0.0
 BuildRequires:	ccolamd-devel >= 2.0.0
-BuildRequires:	suitesparse-common-devel >= 4.0.0
+BuildRequires:	suitesparseconfig-devel >= 4.2.1-3
 %if %{with metis}
 BuildRequires:	metis-devel >= 5.1.0
 %endif
