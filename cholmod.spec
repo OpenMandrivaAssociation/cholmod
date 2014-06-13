@@ -7,7 +7,7 @@
 
 Name:		cholmod
 Version:	2.1.2
-Release:	4
+Release:	5
 Epoch:		1
 Summary:	Routines for factorizing sparse symmetric positive definite matricies
 Group:		System/Libraries
